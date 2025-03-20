@@ -8,8 +8,10 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
+import React from "react";
 import CustomContainer from "../../compoonents/container";
 import image from "../../assets/images/about-img.png";
+import { motion } from "framer-motion";
 
 const items = [
   {
@@ -38,7 +40,7 @@ const items = [
   },
 ];
 
-const Events = () => {
+const Services = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -52,28 +54,65 @@ const Events = () => {
           flexDirection="column"
           alignItems="center"
         >
-          <p
+          <motion.p
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+              transition: { delay: 0.2, duration: 0.5 },
+            }}
+            viewport={{ once: false, amount: 0.5 }}
             style={{
               color: theme.palette.primary.main,
               fontSize: 12,
               marginBottom: -10,
             }}
           >
-            Events
-          </p>
-          <h3>Our Events</h3>
-          <p style={{ width: isMobile ? "96%" : "60%", textAlign: "center" }}>
-            Welcome to Whiterock Global Travels' Events Page! Discover our
-            curated travel experiences that blend adventure, culture, and
-            personal growth. Join us on our upcoming journeys and create
-            unforgettable memories.
-          </p>
+            Services
+          </motion.p>
+          <motion.h3
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+              transition: { delay: 0.2, duration: 0.5 },
+            }}
+            viewport={{ once: false, amount: 0.5 }}
+          >
+            Our Services
+          </motion.h3>
+          <motion.p
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+              transition: { delay: 0.2, duration: 0.5 },
+            }}
+            viewport={{ once: false, amount: 0.5 }}
+            style={{ width: isMobile ? "96%" : "60%", textAlign: "center" }}
+          >
+            At Whiterock Global Travels, we are dedicated to providing
+            exceptional services in international education, business, and
+            travel. Our expertise lies in connecting individuals with
+            opportunities and experiences that broaden horizons and enrich
+            lives.
+          </motion.p>
         </Box>
         <Toolbar />
         <Grid container spacing={4}>
           {items.map((elem) => (
             <Grid item xs={12} sm={12} md={6} lg={4}>
-              <EventCard elem={elem} />
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                  transition: { delay: 0.2, duration: 0.5 },
+                }}
+                viewport={{ once: false, amount: 0.5 }}
+              >
+                <ServiceCard elem={elem} />
+              </motion.div>
             </Grid>
           ))}
         </Grid>
@@ -83,7 +122,7 @@ const Events = () => {
   );
 };
 
-const EventCard = ({ elem }: any) => {
+const ServiceCard = ({ elem }: any) => {
   return (
     <Card elevation={0} sx={{ border: "1px solid #ccc", borderRadius: 2 }}>
       <Box
@@ -122,4 +161,4 @@ const EventCard = ({ elem }: any) => {
   );
 };
 
-export default Events;
+export default Services;

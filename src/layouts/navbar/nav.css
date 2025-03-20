@@ -1,0 +1,22 @@
+@font-face {
+  font-family: urbanistFont;
+  src: url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+}
+
+.pending {
+  color: black;
+  font-family: urbanistFont;
+  font-size: 15px;
+  font-weight: 400;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.active {
+  color: #7f56d9;
+  font-size: 15px;
+  font-family: urbanistFont;
+  font-weight: 600;
+  margin-left: 8px;
+  margin-right: 8px;
+}

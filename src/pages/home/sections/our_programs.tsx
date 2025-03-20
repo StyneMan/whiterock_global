@@ -1,30 +1,36 @@
 import {
   Box,
-  Button,
+  Card,
   Grid,
-  IconButton,
+  styled,
   Toolbar,
   Typography,
-  useMediaQuery,
   useTheme,
 } from "@mui/material";
-import React, { useState } from "react";
 import CustomContainer from "../../../compoonents/container";
-// import "react-alice-carousel/lib/alice-carousel.css";
-// import Carousel from "react-multi-carousel";
-import Slider from "react-slick";
 import "react-multi-carousel/lib/styles.css";
 
-import "./testimonial.css";
+import { motion } from "framer-motion";
 
-const testimonials = [
-  { id: 1, text: "This is the first testimonial.", author: "John Doe" },
-  { id: 2, text: "This is the second testimonial.", author: "Jane Smith" },
-  { id: 3, text: "This is the third testimonial.", author: "Alice Johnson" },
-  { id: 4, text: "This is the fourth testimonial.", author: "Bob Brown" },
-  { id: 5, text: "This is the fifth testimonial.", author: "Charlie Davis" },
-  { id: 6, text: "This is the sixth testimonial.", author: "David Wilson" },
+import "./testimonial.css";
+import image from "../../../assets/images/why_us.png";
+
+const list = [
+  { id: 1, text: "Summer Program", author: "John Doe" },
+  { id: 2, text: "Winter Program.", author: "Jane Smith" },
+  { id: 3, text: "Summer Program", author: "John Doe" },
+  { id: 4, text: "Winter Program.", author: "Jane Smith" },
+  { id: 5, text: "Summer Program", author: "John Doe" },
+  { id: 6, text: "Winter Program.", author: "Jane Smith" },
 ];
+
+const CustomCard = styled(Card)(({ theme }) => ({
+  backgroundColor: "transparent",
+  "&:hover": {
+    backgroundColor: theme.palette.primary.dark,
+    opacity: 0.3,
+  },
+}));
 
 const OurPrograms = () => {
   const theme = useTheme();
@@ -40,21 +46,65 @@ const OurPrograms = () => {
           alignItems={"center"}
           justifyContent={"center"}
         >
-          <h3
+          <motion.h3
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+              transition: { delay: 0.2, duration: 0.5 },
+            }}
+            viewport={{ once: false, amount: 0.5 }}
             style={{
-              fontSize: 24,
+              fontSize: 22,
               fontWeight: 600,
               marginTop: -4,
             }}
           >
-            Our Programs 
-          </h3>
+            Our Programs
+          </motion.h3>
         </Box>
         <Box p={2} />
+        <Grid container spacing={4}>
+          {list.map((elem) => (
+            <Grid key={elem?.id} item xs={12} md={6} lg={4}>
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                  transition: { delay: 0.2, duration: 0.5 },
+                }}
+                viewport={{ once: false, amount: 0.5 }}
+              >
+                <CustomCard>
+                  <img
+                    src={image}
+                    alt=""
+                    style={{ height: 180, width: "100%" }}
+                  />
+                  <Box
+                    sx={(theme) => ({
+                      bgcolor: theme.palette.primary.dark,
+                      display: "flex",
+                      justifyContent: "center",
+                      color: "white",
+                    })}
+                    py={1}
+                    px={2}
+                  >
+                    <Typography>{elem.text}</Typography>
+                  </Box>
+                </CustomCard>
+              </motion.div>
+            </Grid>
+          ))}
+        </Grid>
       </CustomContainer>
       <Toolbar />
     </Box>
   );
 };
+
+const HoverImageCard = () => {};
 
 export default OurPrograms;
